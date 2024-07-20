@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="todo"
+            type="com.example.todolist.entity.ToDo" />
+
+        <variable
+            name="datePickerClickHandler"
+            type="com.example.todolist.clickHandlers.DateTimeDialogClickHandler" />
+
+        <variable
+            name="timePickerClickHandler"
+            type="com.example.todolist.clickHandlers.DateTimeDialogClickHandler" />
+
+        <variable
+            name="crudClickHandler"
+            type="com.example.todolist.clickHandlers.CRUDClickHandler" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarDefaultDelayBeforeFade="@integer/material_motion_duration_short_1"
+        android:scrollbarThumbVertical="?attr/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_addNew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".subActivity.AddNewTodoActivity">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/title_addNew"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Title"
+                    app:boxStrokeColor="@color/material_text_input_stroke_color"
+                    app:hintTextColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/note_addNew"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@={todo.title}"
+                        android:textSize="20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/note_addNew"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Add note"
+                    app:boxStrokeColor="@color/material_text_input_stroke_color"
+                    app:hintTextColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/datePickerTextInputLayout_addNew"
+                    app:layout_constraintEnd_toEndOf="@+id/title_addNew"
+                    app:layout_constraintStart_toStartOf="@+id/title_addNew"
+                    app:layout_constraintTop_toBottomOf="@id/title_addNew">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@={todo.note}"
+                        android:textSize="20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/datePickerTextInputLayout_addNew"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Enter date"
+                    app:boxStrokeColor="@color/material_text_input_stroke_color"
+                    app:hintTextColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/timePickerTextInputLayout_addNew"
+                    app:layout_constraintEnd_toStartOf="@id/datePickerBtn_addNew"
+                    app:layout_constraintStart_toStartOf="@+id/note_addNew"
+                    app:layout_constraintTop_toBottomOf="@id/note_addNew">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/datePicker_addNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:onClick="@{datePickerClickHandler::onDatePickerClicked}"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@={todo.date}"
+                        android:textSize="20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/datePickerBtn_addNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/offWhite"
+                    android:onClick="@{datePickerClickHandler::onDatePickerClicked}"
+                    android:src="@drawable/calendar_vector_image"
+                    app:layout_constraintBottom_toBottomOf="@+id/datePickerTextInputLayout_addNew"
+                    app:layout_constraintEnd_toEndOf="@id/note_addNew"
+                    app:layout_constraintStart_toEndOf="@id/datePickerTextInputLayout_addNew"
+                    app:layout_constraintTop_toTopOf="@+id/datePickerTextInputLayout_addNew" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/timePickerTextInputLayout_addNew"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Enter time"
+                    app:boxStrokeColor="@color/material_text_input_stroke_color"
+                    app:hintTextColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/saveBtn_addNew"
+                    app:layout_constraintEnd_toStartOf="@id/timePickerBtn_addNew"
+                    app:layout_constraintStart_toStartOf="@+id/datePickerTextInputLayout_addNew"
+                    app:layout_constraintTop_toBottomOf="@id/datePickerTextInputLayout_addNew">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/timePicker_addNew"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:onClick="@{timePickerClickHandler::onTimePickerClicked}"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@={todo.time}"
+                        android:textSize="20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/timePickerBtn_addNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:backgroundTint="@color/offWhite"
+                    android:onClick="@{timePickerClickHandler::onTimePickerClicked}"
+                    android:src="@drawable/clock_vector_image"
+                    app:layout_constraintBottom_toBottomOf="@+id/timePickerTextInputLayout_addNew"
+                    app:layout_constraintEnd_toEndOf="@+id/datePickerBtn_addNew"
+                    app:layout_constraintStart_toEndOf="@+id/timePickerTextInputLayout_addNew"
+                    app:layout_constraintTop_toTopOf="@+id/timePickerTextInputLayout_addNew" />
+
+                <Button
+                    android:id="@+id/saveBtn_addNew"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:onClick="@{crudClickHandler::onSaveClicked}"
+                    android:text="Save"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/timePickerTextInputLayout_addNew" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="todo"
+            type="com.example.todolist.entity.ToDo" />
+
+        <variable
+            name="clickHandler"
+            type="com.example.todolist.clickHandlers.ListItemClickHandler" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp">
+
+        <HorizontalScrollView
+            android:id="@+id/titleLayout_itemList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbarDefaultDelayBeforeFade="@integer/material_motion_duration_short_1"
+            android:scrollbarThumbHorizontal="?attr/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/noteBtn_itemList"
+            app:layout_constraintEnd_toStartOf="@id/checkbox_itemList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_itemList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="start"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:text="@{todo.title}"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </HorizontalScrollView>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:checked="@{todo.done}"
+            android:onCheckedChanged="@{clickHandler::onCheckedChanged}"
+            app:layout_constraintBottom_toBottomOf="@+id/titleLayout_itemList"
+            app:layout_constraintEnd_toStartOf="@id/guideline_itemList"
+            app:layout_constraintTop_toTopOf="@+id/titleLayout_itemList"
+            app:useMaterialThemeColors="false" />
+
+        <TextView
+            android:id="@+id/noteBtn_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:onClick="@{clickHandler::onNotesClicked}"
+            android:text="Notes"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/separator1_itemList"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleLayout_itemList" />
+
+        <View
+            android:id="@+id/separator1_itemList"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/noteBtn_itemList"
+            app:layout_constraintEnd_toStartOf="@+id/date_itemList"
+            app:layout_constraintStart_toEndOf="@+id/noteBtn_itemList"
+            app:layout_constraintTop_toTopOf="@id/noteBtn_itemList" />
+
+        <TextView
+            android:id="@+id/date_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{todo.date}"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@id/separator1_itemList"
+            app:layout_constraintEnd_toStartOf="@+id/separator2_itemList"
+            app:layout_constraintStart_toEndOf="@+id/separator1_itemList"
+            app:layout_constraintTop_toTopOf="@id/separator1_itemList" />
+
+        <View
+            android:id="@+id/separator2_itemList"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/date_itemList"
+            app:layout_constraintEnd_toStartOf="@+id/time_itemList"
+            app:layout_constraintStart_toEndOf="@+id/date_itemList"
+            app:layout_constraintTop_toTopOf="@id/date_itemList" />
+
+        <TextView
+            android:id="@+id/time_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{todo.time}"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@id/separator2_itemList"
+            app:layout_constraintEnd_toEndOf="@id/guideline_itemList"
+            app:layout_constraintStart_toEndOf="@+id/separator2_itemList"
+            app:layout_constraintTop_toTopOf="@id/separator2_itemList" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_itemList"
+            app:layout_constraintStart_toStartOf="@id/guideline_itemList"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/editBtn_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/offWhite"
+            android:onClick="@{clickHandler::onEditClicked}"
+            android:src="@drawable/edit_vector_image"
+            app:layout_constraintBottom_toTopOf="@id/deleteBtn_itemList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_itemList"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/deleteBtn_itemList"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/offWhite"
+            android:onClick="@{clickHandler::onDeleteClicked}"
+            android:src="@drawable/delete_vector_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_itemList"
+            app:layout_constraintTop_toBottomOf="@id/editBtn_itemList" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:dividerColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

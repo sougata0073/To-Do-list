@@ -5,8 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -36,7 +34,7 @@ public class DateTimeDialogClickHandler {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String date = dayOfMonth + "-" + month + "-" + year;
+                        String date = dayOfMonth + "-" + (month + 1) + "-" + year;
                         textView.setText(date);
                     }
                 }, year, month, day);

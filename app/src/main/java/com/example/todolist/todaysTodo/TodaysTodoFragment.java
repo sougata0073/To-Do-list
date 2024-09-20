@@ -62,7 +62,7 @@ public class TodaysTodoFragment extends Fragment {
                     int month = calendar.get(Calendar.MONTH);
                     int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                    String todayDate = day + "-" + month + "-" + year;
+                    String todayDate = day + "-" + (month + 1) + "-" + year;
 
                     for(int i = 0; i < newTodoList.size(); i++){
                         ToDo t = newTodoList.get(i);
